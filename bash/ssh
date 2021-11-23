@@ -1,0 +1,10 @@
+# By-pass firewalled server access:
+
+Access a server behind a firewall or a NAT table can be tricky. Simply create a reverse tunnel from a publically accessible server: 
+
+Run command from firewalled server:
+ssh -o ServerAliveInterval=300 -o ServerAliveCountMax=2 -N -R 5899:localhost:22 wolverines
+
+5899-> port on the public server
+22->port on the firewalled server (sshd daemon)
+wolverines-> hostname of the public server
