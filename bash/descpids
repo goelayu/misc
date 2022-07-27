@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Description:
+# This script will list all descended PIDs of a given PID.
+
+allpids=()
+
+descendent_pids() {
+    pids=$(pgrep -P $1)
+    for pid in $pids; do
+      if [[ ! " ${allpids[*]} " =~ " ${pid} " ]]; then
+        allpids+=($pid)
+      fi
+      descendent_pids $pid
+    done
+
+}
+
+descendent_pids $1
+
+printf '%s\n' "${allpids[@]}"
