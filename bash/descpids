@@ -2,6 +2,7 @@
 
 # Description:
 # This script will list all descended PIDs of a given PID.
+# descendend include children, grandchildren, etc.
 
 allpids=()
 
