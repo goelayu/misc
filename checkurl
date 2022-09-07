@@ -1,0 +1,24 @@
+#! /usr/bin/env bash
+
+# checks the validity of any give URL
+# Akin to standard nix return values, returns 0 on success..
+
+display_usage() { 
+	echo "This script must be run with only one argument" 
+	echo -e "\nUsage: $0 [arguments] \n" 
+} 
+
+# if less than one arguments supplied, display usage 
+if [  $# -lt 1 ] 
+	then 
+		display_usage
+		exit 1
+fi 
+ 
+
+if curl --head --silent --fail $1 &> /dev/null;
+ then
+  echo 0
+ else
+  echo 1
+fi
