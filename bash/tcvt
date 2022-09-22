@@ -1,0 +1,6 @@
+#!/bin/bash
+# The bash script parses a specific column of the time command output
+# and converts the time value to ms
+
+input="-"
+cat $input | sed -E 's/[^0-9\.]+//g' | tr -d '\n' | (cat && echo " * 1000") | bc
