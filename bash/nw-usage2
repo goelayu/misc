@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+#Compatible with net-tools v2.1: Outputs RX and WX in separate lines
+
+awk '{if (NR == 1) {r=$1;t=$2} else {print $1 - r, $2 - t}}' <(ifconfig $1 | grep packets | awk '{printf $5" " }') <(sleep 1; ifconfig $1 | grep packets | awk '{printf $5" " }')

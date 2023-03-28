@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+# Compatible with older net-tools 1.6 version: ifconfig outputs RX and WX in the same line
+
+awk '{if (NR == 1) {r=$3;t=$8} else {print $3 - r, $8 - t}}' <(ifconfig $1 | grep 'RX bytes' | sed 's/:/ /g') <(sleep 1; ifconfig $1 | grep 'RX bytes' | sed 's/:/ /g')
